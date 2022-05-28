@@ -125,13 +125,6 @@ class _NewNoteState extends State<NewNote> {
 
                       setState(() {
                         note.id = taskId;
-                        print('tassssssssk id ${note.id} ******$taskId');
-                        print(note);
-                        // ++indexNote;
-                        // if (indexColor < colorsList.length) {
-                        //   ++indexColor;
-                        // } else
-                        //   indexColor = 1;
                       });
 
                       Navigator.push(
@@ -156,7 +149,10 @@ class _NewNoteState extends State<NewNote> {
           children: [
             Text(
               date,
-              style: TextStyle(color: Color.fromARGB(255, 195, 193, 193)),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 195, 193, 193),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16),
             ),
             Form(
                 key: formKey,

@@ -146,10 +146,12 @@ class _EditNoteState extends State<EditNote> {
                           indexColor = 1;
                       });
 
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MyNotes())).then((value) {setState(() {
-                            
-                          });});
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MyNotes())).then((value) {
+                        setState(() {});
+                      });
                     }
                   },
                 ),
@@ -169,6 +171,8 @@ class _EditNoteState extends State<EditNote> {
                 child: Column(
                   children: [
                     TextFormField(
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       controller: titleController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -177,9 +181,8 @@ class _EditNoteState extends State<EditNote> {
                         return null;
                       },
                       decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: widget.note.noteTitle,
-                          hintStyle: TextStyle(color: mainColor, fontSize: 20)),
+                        border: InputBorder.none,
+                      ),
                     ),
                     TextFormField(
                       controller: descriptionController,
@@ -190,12 +193,11 @@ class _EditNoteState extends State<EditNote> {
                         }
                         return null;
                       },
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                       decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: widget.note.notedescription,
-                          hintStyle: TextStyle(
-                              color: Color.fromARGB(255, 180, 173, 250),
-                              fontSize: 18)),
+                        border: InputBorder.none,
+                      ),
                     ),
                   ],
                 )),

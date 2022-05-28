@@ -62,9 +62,7 @@ class _MyNotesState extends State<MyNotes> {
                   itemCount: (snapshot.data as List<Note>).length,
                   itemBuilder: (context, index) {
                     print((snapshot.data as List<Note>).length);
-                    // if ((snapshot.data as List<Note>).length == 0) {
-                    //   return EmptyNote();
-                    // }
+                   
                     return NoteStructrue(
                         note: (snapshot.data as List<Note>)[index]);
                   });

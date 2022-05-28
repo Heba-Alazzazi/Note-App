@@ -9,7 +9,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     // theme: ThemeData(fontFamily: 'Open Sans'),
+     
       home: Scaffold(
         body: Container(
           width: double.infinity,
@@ -18,7 +18,6 @@ class Splash extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 40,
