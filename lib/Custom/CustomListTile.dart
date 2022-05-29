@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
-  CustomListTile(
-      {Key? key, required IconData this.icon, required String this.text})
+  CustomListTile({Key? key, required this.icon, required this.text})
       : super(key: key);
   IconData icon;
   String text;
@@ -11,7 +10,7 @@ class CustomListTile extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
           radius: 17,
-          backgroundColor: Color.fromARGB(255, 222, 220, 220),
+          backgroundColor: const Color.fromARGB(255, 222, 220, 220),
           child: Icon(
             icon,
             size: 25,
@@ -19,7 +18,8 @@ class CustomListTile extends StatelessWidget {
           )),
       title: Text(
         text,
-        style: TextStyle(color: Colors.white),
+        style:
+            const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
       ),
     );
   }

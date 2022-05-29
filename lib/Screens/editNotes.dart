@@ -42,22 +42,22 @@ class _EditNoteState extends State<EditNote> {
         backgroundColor: colorsList[widget.note.noteColor],
         title: Row(
           children: [
-            Text('Edit Note'),
+            const Text('Edit Note'),
           ],
         ),
         actions: [
           Container(
-            padding: EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.only(right: 15),
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.more_vert_outlined),
+                  icon: const Icon(Icons.more_vert_outlined),
                   onPressed: () {
                     scaffoldKey.currentState!.showBottomSheet((context) =>
                         Container(
                           height: size.height / 2,
                           color: colorsList[widget.note.noteColor],
-                          padding: EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(20),
                           child: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class _EditNoteState extends State<EditNote> {
                                 SizedBox(
                                   height: 100,
                                   child: ListView.builder(
-                                      padding: EdgeInsets.all(15),
+                                      padding: const EdgeInsets.all(15),
                                       shrinkWrap: true,
                                       itemCount: colorsList.length,
                                       scrollDirection: Axis.horizontal,
@@ -93,9 +93,9 @@ class _EditNoteState extends State<EditNote> {
                                               CircleAvatar(
                                                 backgroundColor: colorsList[i],
                                                 radius: 25,
-                                                child: Icon(Icons.check),
+                                                child: const Icon(Icons.check),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               )
                                             ],
@@ -115,7 +115,7 @@ class _EditNoteState extends State<EditNote> {
                                                 radius: 25,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 10,
                                             )
                                           ],
@@ -129,7 +129,7 @@ class _EditNoteState extends State<EditNote> {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.check),
+                  icon: const Icon(Icons.check),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
@@ -161,7 +161,7 @@ class _EditNoteState extends State<EditNote> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(30),
+        padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -172,7 +172,7 @@ class _EditNoteState extends State<EditNote> {
                   children: [
                     TextFormField(
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                       controller: titleController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -180,7 +180,7 @@ class _EditNoteState extends State<EditNote> {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                       ),
                     ),
@@ -194,8 +194,8 @@ class _EditNoteState extends State<EditNote> {
                         return null;
                       },
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                      decoration: InputDecoration(
+                          const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                       ),
                     ),

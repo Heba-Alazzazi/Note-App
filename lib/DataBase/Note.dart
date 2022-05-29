@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class Note {
   late int? id;
@@ -27,6 +26,7 @@ class Note {
     return map;
   }
 
+  @override
   String toString() {
     return ' id $id ,, title $noteTitle ,, des $notedescription ,, color $noteColor';
   }

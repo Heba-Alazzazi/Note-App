@@ -13,7 +13,6 @@ class DBHelper with ChangeNotifier {
   static const String noteDescriptionColumn = 'notedescription';
   static const String noteColorColumn = 'noteColor';
 
-  static List<Note> allNotes = [];
 
   Future<Database> initDataBase() async {
     Database database = await connectToDatabase();
@@ -24,13 +23,17 @@ class DBHelper with ChangeNotifier {
     Directory appfolder = await getApplicationDocumentsDirectory();
     String appPath = appfolder.path;
     String dbPath = join(appPath, "NoteApp.db");
-    Database database = await openDatabase(dbPath, onCreate: (db, version) {
+    Database database = await openDatabase(dbPath, 
+      onCreate: (db, version) {
       db.execute(
           'CREATE TABLE note (id INTEGER PRIMARY KEY AUTOINCREMENT  , $noteTitleColumn  TEXT, $noteDescriptionColumn TEXT, $noteColorColumn INTEGER )');
-    }, onOpen: (database) {
+    },
+     onOpen: (database) {
       print(database.path);
       print('table created');
-    }, version: 1);
+    }, 
+    version: 1);
+
     return database;
   }
 
@@ -58,19 +61,11 @@ class DBHelper with ChangeNotifier {
     }
   }
 
-  Future<Note> getSpecifucNote(int id) async {
-    Database db = await initDataBase();
-    List result =
-        await db.query("note", where: "id:?", whereArgs: [id], limit: 1);
-    Note note = Note.fromMap(result.first);
-    notifyListeners();
-    return note;
-  }
-
   Future<List<Note>> getAllNote() async {
     Database db = await initDataBase();
 
     List noteMap = await db.query('note');
+    
     return List.generate(noteMap.length, (index) {
       return Note.fromMap(noteMap[index]);
     });

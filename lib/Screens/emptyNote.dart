@@ -19,7 +19,7 @@ class EmptyNote extends StatelessWidget {
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 13, 89, 156)),
+                color: mainColor),
           ),
           const SizedBox(
             height: 15,

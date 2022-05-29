@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lab_project_noteapp/DataBase/DB.dart';
 import 'package:lab_project_noteapp/Screens/MyNotes.dart';
 import 'package:lab_project_noteapp/constant.dart';
 
@@ -19,7 +18,7 @@ class Splash extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Image.asset(
@@ -34,10 +33,10 @@ class Splash extends StatelessWidget {
                         primary: mainColor,
                         minimumSize: Size(250, 45)),
                     onPressed: () {
-                      Navigator.push(context,
+                      Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => MyNotes()));
                     },
-                    child: Text('Get Started'))
+                    child: const Text('Get Started'))
               ],
             ),
           ),

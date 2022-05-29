@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:lab_project_noteapp/Screens/editNotes.dart';
 import 'package:lab_project_noteapp/constant.dart';
-
-import '../DataBase/DB.dart';
 import '../DataBase/Note.dart';
 
+// ignore: must_be_immutable
 class NoteStructrue extends StatelessWidget {
-  NoteStructrue({required this.note});
   Note note;
-  static var db = DBHelper.dbHelper;
+  NoteStructrue({Key? key, required this.note}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushReplacement(context,
+        Navigator.push(context,
             MaterialPageRoute(builder: (context) => EditNote(note: this.note)));
       },
       child: Container(
           height: 120,
           width: double.infinity,
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
+              // ignore: prefer_const_literals_to_create_immutables
               boxShadow: [
-                BoxShadow(
+                const BoxShadow(
                     color: Color.fromARGB(255, 218, 212, 212),
                     blurRadius: 15,
                     spreadRadius: 3,
@@ -34,15 +34,14 @@ class NoteStructrue extends StatelessWidget {
             children: [
               Container(
                 width: 8,
-                //height: 50,
                 decoration: BoxDecoration(
                   color: colorsList[note.noteColor],
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20)),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Column(
@@ -51,7 +50,7 @@ class NoteStructrue extends StatelessWidget {
                 children: [
                   Text(
                     note.noteTitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 25,
                         color: mainColor,
                         fontWeight: FontWeight.bold),
@@ -59,7 +58,7 @@ class NoteStructrue extends StatelessWidget {
                   Text(
                     note.notedescription,
                     maxLines: 3,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                   )
                 ],
               ),

@@ -14,10 +14,10 @@ class MyNotes extends StatefulWidget {
 }
 
 class _MyNotesState extends State<MyNotes> {
+
   static var db = DBHelper.dbHelper;
-  int length = DBHelper.allNotes.length;
-  late List<Note> notes;
-  @override
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +46,7 @@ class _MyNotesState extends State<MyNotes> {
           ),
           onPressed: () {
             Navigator.push(context,
-                    MaterialPageRoute(builder: (BuildOwner) => NewNote()))
-                .then((value) {
-              setState(() {});
-            });
+                    MaterialPageRoute(builder: (BuildOwner) => NewNote()));
           },
         ),
         body: FutureBuilder(
@@ -60,9 +57,7 @@ class _MyNotesState extends State<MyNotes> {
             } 
               return ListView.builder(
                   itemCount: (snapshot.data as List<Note>).length,
-                  itemBuilder: (context, index) {
-                    print((snapshot.data as List<Note>).length);
-                   
+                  itemBuilder: (context, index) {                
                     return NoteStructrue(
                         note: (snapshot.data as List<Note>)[index]);
                   });
