@@ -46,116 +46,121 @@ class _EditNoteState extends State<EditNote> {
           ],
         ),
         actions: [
-          Container(
-            padding: const EdgeInsets.only(right: 15),
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.more_vert_outlined),
-                  onPressed: () {
-                    scaffoldKey.currentState!.showBottomSheet((context) =>
-                        Container(
-                          height: size.height / 2,
-                          color: colorsList[widget.note.noteColor],
-                          padding: const EdgeInsets.all(20),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomListTile(
-                                    icon: Icons.share,
-                                    text: 'Share with your friends'),
-                                InkWell(
-                                  onTap: () {
-                                    db.deleteNote(widget.note.id);
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => MyNotes()));
-                                  },
-                                  child: CustomListTile(
-                                      icon: Icons.delete, text: 'Delete'),
-                                ),
-                                CustomListTile(
-                                    icon: Icons.content_copy_rounded,
-                                    text: 'Duplicate'),
-                                SizedBox(
-                                  height: 100,
-                                  child: ListView.builder(
-                                      padding: const EdgeInsets.all(15),
-                                      shrinkWrap: true,
-                                      itemCount: colorsList.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, i) {
-                                        if (colorsList[i] == basicColor) {
+          Center(
+            child: Container(
+              padding: const EdgeInsets.only(right: 15),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.more_vert_outlined),
+                    onPressed: () {
+                      scaffoldKey.currentState!.showBottomSheet((context) =>
+                          Container(
+                            height: size.height / 2,
+                            color: colorsList[widget.note.noteColor],
+                            padding: const EdgeInsets.all(20),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomListTile(
+                                      icon: Icons.share,
+                                      text: 'Share with your friends'),
+                                  InkWell(
+                                    onTap: () {
+                                      db.deleteNote(widget.note.id);
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => MyNotes()));
+                                    },
+                                    child: CustomListTile(
+                                        icon: Icons.delete, text: 'Delete'),
+                                  ),
+                                  CustomListTile(
+                                      icon: Icons.content_copy_rounded,
+                                      text: 'Duplicate'),
+                                  SizedBox(
+                                    height: 100,
+                                    child: ListView.builder(
+                                        padding: const EdgeInsets.all(15),
+                                        shrinkWrap: true,
+                                        itemCount: colorsList.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, i) {
+                                          if (colorsList[i] == basicColor) {
+                                            return Row(
+                                              children: [
+                                                CircleAvatar(
+                                                  backgroundColor:
+                                                      colorsList[i],
+                                                  radius: 25,
+                                                  child:
+                                                      const Icon(Icons.check),
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                )
+                                              ],
+                                            );
+                                          }
                                           return Row(
                                             children: [
-                                              CircleAvatar(
-                                                backgroundColor: colorsList[i],
-                                                radius: 25,
-                                                child: const Icon(Icons.check),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    widget.note.noteColor = i;
+                                                    indexColor = i;
+                                                  });
+                                                },
+                                                child: CircleAvatar(
+                                                  backgroundColor:
+                                                      colorsList[i],
+                                                  radius: 25,
+                                                ),
                                               ),
                                               const SizedBox(
                                                 width: 10,
                                               )
                                             ],
                                           );
-                                        }
-                                        return Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  widget.note.noteColor = i;
-                                                  indexColor = i;
-                                                });
-                                              },
-                                              child: CircleAvatar(
-                                                backgroundColor: colorsList[i],
-                                                radius: 25,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            )
-                                          ],
-                                        );
-                                      }),
-                                )
-                              ],
+                                        }),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        ));
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.check),
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      Note note = Note(
-                          id: widget.note.id,
-                          noteTitle: titleController.text,
-                          notedescription: descriptionController.text,
-                          noteColor: indexColor);
-                      DBHelper.dbHelper.updateNote(note, widget.note.id);
-                      setState(() {
-                        if (indexColor < colorsList.length) {
-                          ++indexColor;
-                        } else
-                          indexColor = 1;
-                      });
+                          ));
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.check),
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        Note note = Note(
+                            id: widget.note.id,
+                            noteTitle: titleController.text,
+                            notedescription: descriptionController.text,
+                            noteColor: indexColor);
+                        DBHelper.dbHelper.updateNote(note, widget.note.id);
+                        setState(() {
+                          if (indexColor < colorsList.length) {
+                            ++indexColor;
+                          } else
+                            indexColor = 1;
+                        });
 
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyNotes())).then((value) {
-                        setState(() {});
-                      });
-                    }
-                  },
-                ),
-              ],
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyNotes())).then((value) {
+                          setState(() {});
+                        });
+                      }
+                    },
+                  ),
+                ],
+              ),
             ),
           )
         ],
@@ -171,8 +176,8 @@ class _EditNoteState extends State<EditNote> {
                 child: Column(
                   children: [
                     TextFormField(
-                      style:
-                          const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.bold),
                       controller: titleController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -193,8 +198,8 @@ class _EditNoteState extends State<EditNote> {
                         }
                         return null;
                       },
-                      style:
-                          const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w500),
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                       ),
